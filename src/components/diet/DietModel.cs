@@ -9,8 +9,8 @@ namespace api.healthy.src.components.diet
     public class DietModel
     {
         public Guid Id { get; set; }
-        public required ExerciseLevel ExerciseLevel { get; set; }
-        public required BodyInformation BodyInformation { get; set; }
+        public ExerciseLevel ExerciseLevel { get; set; }
+        public double Weigth { get; set; }
 
         public double BMR { get; set; }
         public double MedianKcalLose { get; set; }
@@ -18,28 +18,36 @@ namespace api.healthy.src.components.diet
         public Macros? Macros { get; set; }
 
 
-        public required UserModel User { get; set; }
+        public UserModel User { get; set; }
 
-        public DietModel(double weigth, double heigth, ExerciseLevel exerciseLevel) {
+        public DietModel(double weigth, ExerciseLevel exerciseLevel)
+        {
+            this.Id = Guid.NewGuid();
+            this.Weigth = weigth;
             this.ExerciseLevel = exerciseLevel;
-            this.BodyInformation = new(weigth, heigth);
-            this.FillBMR();
-            /// ... more
         }
 
+        public DietModel() { }
 
 
 
-        public void FillBMR() {
-            bool isMen = User.Sex == 'm';
-            double weigth = this.BodyInformation.Weigth;
-            double heigth = this.BodyInformation.Heigth;
+
+        public void FillBMR()
+        {
+            bool isMen = User.Sex == 'M';
+            double heigth = User.Heigth;
+            double weigth = this.Weigth;
             int age = this.User.GetAge();
 
-            if (isMen) {
-                this.BMR = 88.362 + (13.397 + weigth) + (4.799 + heigth) - (5.677 * age);
-            } else {
-                this.BMR = 447.593 + (9.247 * weigth) + (3.098 * heigth) - (4.330 * age); 
+            if (isMen)
+            {
+                // Fórmula corrigida para homens
+                this.BMR = 88.362 + (13.397 * weigth) + (4.799 * heigth) - (5.677 * age);
+            }
+            else
+            {
+                // Fórmula para mulheres
+                this.BMR = 447.593 + (9.247 * weigth) + (3.098 * heigth) - (4.330 * age);
             }
         }
     }

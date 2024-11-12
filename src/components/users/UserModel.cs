@@ -13,12 +13,13 @@ namespace api.healthy.src.components.users
         public required string FullName { get; set; }
         public required string Email { get; set; }
         public required char Sex { get; set; }
+        public required int Heigth { get; set; }
         public DateTime BirthDate { get; set; }
 
         public UserModel() { }
 
 
-        public List<DietModel> Diets { get; set; }
+        public List<DietModel> Diets { get; set; } = [];
 
         public int GetAge()
         {

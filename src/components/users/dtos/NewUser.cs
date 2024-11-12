@@ -12,6 +12,7 @@ namespace api.healthy.src.components.users.dtos
         public required string FullName {get;set;}
         public required string Email { get; set; }
         public required char Sex { get; set; }
+        public required int Heigth { get; set; }
         public required DateTime BirthDate { get; set; }
 
 
@@ -31,7 +32,8 @@ namespace api.healthy.src.components.users.dtos
                 FullName = this.FullName,
                 Email = this.Email,
                 Sex = this.Sex,
-                BirthDate = this.BirthDate
+                BirthDate = this.BirthDate,
+                Heigth = this.Heigth
             };
         }
     }

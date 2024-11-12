@@ -2,11 +2,11 @@ namespace api.healthy.src.components.diet
 {
     public enum ExerciseLevel
     {
-        EXTREMELLY_HIGH,
-        VERY_HIGH,
-        MEDIAN,
-        LOW,
-        VERY_LOW
+        EXTREMELLY_HIGH = 4,
+        VERY_HIGH = 3,
+        MEDIAN = 2,
+        LOW = 1,
+        VERY_LOW = 0
     }
 }
 

@@ -53,7 +53,7 @@ namespace api.healthy.src.components.users.repositories
 
         public async Task<List<UserModel>> GetUsersAsync()
         {
-            return await _db.Users.ToListAsync();
+            return await _db.Users.Include(u => u.Diets).ToListAsync();
         }
 
         public async Task<UserModel> UpdateUser(long userCpf, EditUser request)

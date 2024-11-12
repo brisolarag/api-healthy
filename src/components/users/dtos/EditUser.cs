@@ -11,6 +11,7 @@ namespace api.healthy.src.components.users.dtos
         public string? Email { get; set; }
         public char?  Sex { get; set; }
         public DateTime? BirthDate { get; set; }
+        public int? Heigth { get; set; }
 
         public UserModel Edit(UserModel model) {
             if (this.FullName is not null)
@@ -24,6 +25,9 @@ namespace api.healthy.src.components.users.dtos
             
             if (this.Sex.HasValue)
                 model.Sex = this.Sex.Value;
+            
+            if (this.Heigth.HasValue) 
+                model.Heigth = this.Heigth.Value;
 
             
             return model;
